@@ -13,6 +13,10 @@
             <v-container v-if="showAnswer">
                 <h2 class="fade-in">{{ message }}</h2>
             <br>   
+            <template v-if="showPokemon">
+                <ModalInfoPokemon :pokemonID="pokemon.id"/>
+            <br>
+            </template>
             <v-btn class="fade-in" rounded="lg" @click="newGame"> Nuevo juego</v-btn>
 
             </v-container>
@@ -29,18 +33,19 @@
 <script>
 import PokemonOptions from '@/components/PokemonOptions.vue';
 import PokemonPicture from '@/components/PokemonPicture.vue';
+import ModalInfoPokemon from '@/components/ModalInfoPokemon.vue';
 
 import getPokemonOptions from '@/helpers/getPokemonOptions';
 console.log(getPokemonOptions());
 
 export default {
     name: "pokemon",
-    components: { PokemonPicture, PokemonOptions },
+    components: { PokemonPicture, PokemonOptions,ModalInfoPokemon },
     data() {
         return {
             pokemonArr:[], 
             pokemon: null,
-            showPokemon: false,
+            showPokemon: true,
             showAnswer: false,
             message:'',
             intentos: 3,
